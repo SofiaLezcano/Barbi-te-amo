@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nuestros Corazoncitos ❤️</title>
+  <style>
+    body{margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:radial-gradient(circle at center,#ffe6e9 0%,#ffccd2 100%);font-family:system-ui,Segoe UI,Roboto,Arial;text-align:center}
+    .container{position:relative;width:340px;height:340px}
+    svg{width:100%;height:100%;position:absolute;top:0;left:0;transition:transform .7s ease-in-out}
+    #left{transform:translateX(-120px)}
+    #right{transform:translateX(120px)}
+    .half{fill:#e60033;}
+    .mini-photo{position:absolute;width:80px;height:80px;object-fit:contain;transition:transform .7s ease-in-out;}
+    #photoLeft{left:80px;top:120px;transform:translateX(-120px);}
+    #photoRight{right:80px;top:120px;transform:translateX(120px);}
+    .btn{margin-top:80px;background:#ff5e7a;color:#fff;font-weight:700;border:none;padding:14px 28px;border-radius:14px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,0.2);font-size:18px}
+    .btn:active{transform:translateY(2px)}
+    .message{margin-top:20px;font-size:30px;color:#e60033;font-weight:900;opacity:0;transition:opacity .8s,transform .8s;transform:scale(.8)}
+    .visible{opacity:1;transform:scale(1)}
+    .subtext{margin-top:15px;font-size:18px;color:#b3002d;font-weight:600;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- mitad izquierda -->
+    <svg id="left" viewBox="0 0 200 200">
+      <path class="half" d="M100 30 C70 0,20 15,20 60 C20 100,100 180,100 180 L100 30 Z"/>
+    </svg>
+
+    <!-- mitad derecha -->
+    <svg id="right" viewBox="0 0 200 200">
+      <path class="half" d="M100 30 C130 0,180 15,180 60 C180 100,100 180,100 180 L100 30 Z"/>
+    </svg>
+
+    <!-- mini fotos dentro del corazón -->
+    <img id="photoLeft" class="mini-photo" src="spiderman (1).jpg" alt="Foto izquierda">
+    <img id="photoRight" class="mini-photo" src="kittttttttty.jpg" alt="Foto derecha">
+  </div>
+
+  <div class="subtext">💞 Toca muchas veces para juntar nuestros corazoncitos 💞</div>
+  <button id="btn" class="btn">Uni el corazón amorr</button>
+  <div id="msg" class="message">TTTEEE AMOO MI AMORRRRRR❤️</div>
+  <div id="msg2" class="message"> Sos el amor de mi vida, quiero estar toda la vida con vos</div>
+
+  <script>
+    const left = document.getElementById('left');
+    const right = document.getElementById('right');
+    const photoLeft = document.getElementById('photoLeft');
+    const photoRight = document.getElementById('photoRight');
+    const msg = document.getElementById('msg');
+    const msg2 = document.getElementById('msg2');
+    const btn = document.getElementById('btn');
+
+    let clicks = 0;
+
+    btn.addEventListener('click', ()=>{
+      clicks++;
+      const move = Math.max(0, 120 - clicks*10);
+      left.style.transform = `translateX(-${move}px)`;
+      right.style.transform = `translateX(${move}px)`;
+      photoLeft.style.transform = `translateX(-${move}px)`;
+      photoRight.style.transform = `translateX(${move}px)`;
+
+      if(move <= 0){
+        left.style.transform = 'translateX(0)';
+        right.style.transform = 'translateX(0)';
+        photoLeft.style.transform = 'translateX(0)';
+        photoRight.style.transform = 'translateX(0)';
+        msg.classList.add('visible');
+        msg2.classList.add('visible');
+        btn.disabled = true;
+        btn.textContent = '❤️ te amo sabias? ❤️';
+      }
+    });
+  </script>
+</body>
+</html>
